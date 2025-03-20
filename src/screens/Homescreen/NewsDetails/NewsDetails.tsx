@@ -4,15 +4,15 @@ import CustomText from '../../../components/CustomText';
 import CustomImage from '../../../components/CustomImage';
 import Backarrow from 'react-native-vector-icons/Ionicons';
 import Heart from 'react-native-vector-icons/AntDesign';
+import moment from 'moment';
+import CustomButton from '../../../components/CustomButton';
+import {useNavigation} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   horizontalScale,
   moderateScale,
   verticalScale,
 } from '../../../styles/Metrics';
-import moment from 'moment';
-import CustomButton from '../../../components/CustomButton';
-import {useNavigation} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NewsDetails = (props: any) => {
   const navigation = useNavigation();

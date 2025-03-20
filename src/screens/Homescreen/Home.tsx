@@ -20,6 +20,7 @@ import axios from 'axios';
 import {NewsCatagories} from '../../DataSet/CategoriesData';
 import {useNavigation} from '@react-navigation/native';
 import {useTheme} from '../../Themes/ThemeContext';
+import {API_KEY} from '@env';
 import {
   horizontalScale,
   moderateScale,
@@ -27,6 +28,8 @@ import {
 } from '../../styles/Metrics';
 
 const Home = () => {
+  // console.log(API_KEY , ">>>")
+
   const {isDarkMode, toggleTheme} = useTheme();
   const [newsList, setNewsList] = useState([]);
   const [category, setCategory] = useState('top');
@@ -41,7 +44,7 @@ const Home = () => {
   async function getNewsList() {
     try {
       let response = await axios.get(
-        `https://newsdata.io/api/1/news?apikey=pub_647508b3507833ba98751b55d47f2d6fa4bbd&country=in&language=en&size=10&removeduplicate=1&category=${category}`,
+        `https://newsdata.io/api/1/news?apikey=${API_KEY}&country=in&language=en&size=10&removeduplicate=1&category=${category}`,
       );
 
       // console.log(response.data.results);
@@ -123,6 +126,8 @@ const Home = () => {
         style={{
           flex: 0.467,
           // backgroundColor: 'black',
+          justifyContent: 'center',
+          alignItems: 'center',
         }}>
         {loading ? (
           <ActivityIndicator size={'large'} color={'red'}></ActivityIndicator>

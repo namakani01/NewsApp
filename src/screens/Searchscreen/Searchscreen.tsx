@@ -6,6 +6,7 @@ import CustomImage from '../../components/CustomImage';
 import CustomText from '../../components/CustomText';
 import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
+import {API_KEY} from '@env';
 import {
   horizontalScale,
   moderateScale,
@@ -35,7 +36,7 @@ const Searchscreen = (props: any) => {
       }
 
       let response = await axios.get(
-        `https://newsdata.io/api/1/news?apikey=pub_647508b3507833ba98751b55d47f2d6fa4bbd&language=en&size=10&removeduplicate=1${categoryString}${countryString}${queryString}`,
+        `https://newsdata.io/api/1/news?apikey=${API_KEY}&language=en&size=10&removeduplicate=1${categoryString}${countryString}${queryString}`,
       );
 
       console.log(response.data.results);
@@ -46,9 +47,9 @@ const Searchscreen = (props: any) => {
     }
   }
 
-  // useEffect(() => {
-  //   getNewsList();
-  // }, []);
+  useEffect(() => {
+    getNewsList();
+  }, []);
 
   return (
     <SafeAreaView style={styles.container}>
