@@ -57,6 +57,10 @@ const BottomTab = () => {
 
       <Tab.Screen
         options={{
+          headerShown: true,
+          headerStyle: {backgroundColor: isDarkMode ? 'black' : 'white'},
+          headerTitleStyle: {color: isDarkMode ? 'white' : 'black'},
+          headerTitleAlign: 'center',
           tabBarShowLabel: false,
           tabBarIcon: ({focused}) => {
             return focused ? (

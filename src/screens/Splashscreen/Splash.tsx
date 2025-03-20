@@ -79,6 +79,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF4C4C',
     marginHorizontal: horizontalScale(40),
     marginVertical: verticalScale(20),
+    marginBottom: verticalScale(35),
     paddingVertical: verticalScale(10),
     borderRadius: moderateScale(9),
   },

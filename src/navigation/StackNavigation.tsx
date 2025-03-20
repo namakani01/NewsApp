@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './Navigationtypes';
 import Splash from '../screens/Splashscreen/Splash';
 import BottomTab from './BottomTab';
 import NewsDetails from '../screens/Homescreen/NewsDetails/NewsDetails';
-import Heart from 'react-native-vector-icons/AntDesign';
 import CustomButton from '../components/CustomButton';
 import Backarrow from 'react-native-vector-icons/Ionicons';
 import Searchscreen from '../screens/Searchscreen/Searchscreen';
@@ -28,49 +27,11 @@ const StackNavigation = () => {
     checkUser();
   }, []);
 
-  const [like, setLike] = useState<boolean>(false);
-
   return (
     <Stack.Navigator screenOptions={{headerShown: false}}>
       <Stack.Screen name="Splash" component={Splash}></Stack.Screen>
 
       <Stack.Screen
-        // options={{
-        //   headerShown: true,
-        //   headerLeft: () => (
-        //     <CustomButton
-        //       onPress={() => navigation.goBack()}
-        //       style={{
-        //         height: verticalScale(26),
-        //         width: horizontalScale(25),
-        //         justifyContent: 'center',
-        //         alignItems: 'center',
-        //       }}>
-        //       <Backarrow
-        //         name="arrow-back"
-        //         size={moderateScale(21.5)}></Backarrow>
-        //     </CustomButton>
-        //   ),
-        //   headerRight: () => (
-        //     <CustomButton
-        //       onPress={() => {
-        //         setLike(!like);
-        //       }}
-        //       style={{
-        //         height: verticalScale(26),
-        //         width: horizontalScale(25),
-        //         justifyContent: 'center',
-        //         alignItems: 'center',
-        //       }}>
-        //       {like ? (
-        //         <Heart name="heart" size={moderateScale(19)} color={'red'} />
-        //       ) : (
-        //         <Heart name="hearto" size={moderateScale(19)} />
-        //       )}
-        //     </CustomButton>
-        //   ),
-        //   title: '',
-        // }}
         options={{
           headerShown: false,
         }}
@@ -79,6 +40,7 @@ const StackNavigation = () => {
 
       <Stack.Screen
         options={{
+          headerTitleAlign: 'center',
           headerShown: true,
           headerLeft: () => (
             <CustomButton
