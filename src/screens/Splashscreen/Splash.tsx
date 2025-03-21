@@ -13,11 +13,18 @@ import {
 import {useNavigation} from '@react-navigation/native';
 import {RootStackParamList} from '../../navigation/Navigationtypes';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'Splash'>;
 
 const Splash = () => {
   const navigation = useNavigation<NavigationProp>();
+
+  const handleGetStarted = async () => {
+    await AsyncStorage.setItem('isFirstLaunch', 'false');
+    navigation.replace('BottomTab');
+  };
+
   return (
     <View>
       <CustomImageBg
@@ -33,7 +40,7 @@ const Splash = () => {
             text="Get breaking news and personalized updates directly to your feed"></CustomText>
 
           <CustomButton
-            onPress={() => navigation.navigate('BottomTab')}
+            onPress={() => handleGetStarted()}
             style={styles.buttoncontainer}>
             <CustomText
               style={styles.buttontext}

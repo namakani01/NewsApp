@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {RootStackParamList} from './Navigationtypes';
 import Splash from '../screens/Splashscreen/Splash';
@@ -10,25 +10,39 @@ import Searchscreen from '../screens/Searchscreen/Searchscreen';
 import {useNavigation} from '@react-navigation/native';
 import {horizontalScale, moderateScale, verticalScale} from '../styles/Metrics';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {ActivityIndicator} from 'react-native';
+import {View} from 'react-native';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 const StackNavigation = () => {
+  const [isFirstLaunch, setIsFirstLaunch] = useState<any>(null);
+
   const navigation = useNavigation<any>();
 
   useEffect(() => {
-    const checkUser = async () => {
-      const firstTime = await AsyncStorage.getItem('firstTime');
-      if (firstTime !== null) {
-        navigation.navigate('BottomTab');
-      } else {
-        navigation.navigate('Splash');
+    const checkFirstLaunch = async () => {
+      try {
+        const value = await AsyncStorage.getItem('isFirstLaunch');
+        setIsFirstLaunch(value === null);
+      } catch (error) {
+        console.error('AsyncStorage error:', error);
       }
     };
-    checkUser();
+    checkFirstLaunch();
   }, []);
 
+  if (isFirstLaunch === null) {
+    return (
+      <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+        <ActivityIndicator size="large" color="#FF4C4C" />
+      </View>
+    );
+  }
+
   return (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
+    <Stack.Navigator
+      initialRouteName={isFirstLaunch ? 'Splash' : 'BottomTab'}
+      screenOptions={{headerShown: false}}>
       <Stack.Screen name="Splash" component={Splash}></Stack.Screen>
 
       <Stack.Screen

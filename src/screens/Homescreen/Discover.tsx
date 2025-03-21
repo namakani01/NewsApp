@@ -92,7 +92,10 @@ const Discover = () => {
         </View>
 
         <CustomText
-          style={styles.CategoriesText}
+          style={[
+            styles.CategoriesText,
+            {color: isDarkMode ? 'white' : 'black'},
+          ]}
           text="Categories"></CustomText>
 
         <View style={styles.CategoriesContainer}>
@@ -125,7 +128,9 @@ const Discover = () => {
           ))}
         </View>
 
-        <CustomText style={styles.CountryText} text="Country"></CustomText>
+        <CustomText
+          style={[styles.CountryText, {color: isDarkMode ? 'white' : 'black'}]}
+          text="Country"></CustomText>
 
         <View style={styles.CountryContainer}>
           {Countries.map(item => (
